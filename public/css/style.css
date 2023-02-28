@@ -1,0 +1,84 @@
+* {
+    margin: 0
+}
+
+header {
+    background-color: black;
+    padding: 2rem;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+nav a {
+    padding-right: 30px;
+}
+
+h1 {
+    padding-top: 20px;
+}
+
+#main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.section {
+    border: 2px solid black;
+    width: 90%;
+    margin-bottom: 20px;
+}
+
+.heading {
+    background-color: black;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#content{
+    margin: 20px
+}
+
+p,
+input,
+button {
+    margin: 5px 0 5px 0;
+}
+
+input,
+button, textarea{
+    padding: 10px;
+    width: 100%;
+}
+
+.section a {
+    color: black;
+    padding: 2%;
+}
+
+#newPost {
+    position: fixed;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    width: 100px;
+    margin: auto;
+}
+
+.blogHistory {
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    width: 90%
+}
+
+#comment {
+    resize: vertical;
+}
