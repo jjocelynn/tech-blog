@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Blog1",
+    "content": "content that goes inside blog 1",
+    "comment": "optional but blog 1 has it"
+  },
+  {
+    "title": "Blog2",
+    "content": "content that goes inside blog 2"
+  },
+  {
+    "title": "Blog3",
+    "content": "content that goes inside blog 3"
+  },
+  {
+    "title": "Blog4",
+    "content": "content that goes inside blog 4",
+    "comment": "optional but blog 1 has it"
+  }
+]
