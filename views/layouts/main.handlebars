@@ -14,16 +14,19 @@
         <nav>
           <a href="/profile">Home</a>
           <a href="/dashboard">Dashboard</a>
-          <a href="/login">login/logout</a>
+          {{#if logged_in}}
+            <a href="/login">logout</a>
+          {{else}}
+            <a href="/login">login</a>
+          {{/if}}
         </nav>
         <h1>
-          <a href="/">*The Tech Blog*</a>
+          <a href="/">The Tech Blog</a>
         </h1>
       </header>
       <main id="main" class="container container-fluid mt-5">
-        <!-- {{{body}}} -->
+        {{{body}}}
       </main>
-      
     </div>
   </body>
 </html>

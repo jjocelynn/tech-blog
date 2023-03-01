@@ -5,7 +5,7 @@ const session = require("express-session"); //session management
 const exphbs = require("express-handlebars"); //rendering dynamic HTML templates
 
 const routes = require("./controllers"); //custom controllers
-// const helpers = require('./utils/helpers'); //custom helpers
+const helpers = require('./utils/helpers'); //custom helpers
 
 const sequelize = require("./config/connection"); //database access (created in connection.js file).
 const SequelizeStore = require("connect-session-sequelize")(session.Store); //Sequelize-based session store (manages user sessions in the application.)
@@ -15,7 +15,6 @@ const app = express(); //create express js object
 const PORT = process.env.PORT || 3001; //sets the port number
 
 const hbs = exphbs.create({ helpers }); // Set up Handlebars.js engine with custom helpers
-//////////////////////////DONT HAVE THIS YET///////
 
 const sess = {
   //creates a session object with config options

@@ -1,21 +1,23 @@
-{{!-- for each (loop to display) --}}
+{{#each blogs as |blog|}}
 <div class="section">
   <div class="heading">
-    <h2>*Blog Post title*</h2>
-    <p>Posted by <span>*USER*</span> on <span>*DATE</span></p>
+    <h2>{{blog.title}}</h2>
+    <p>Posted by <span>{{blog.user.username}}</span> on <span>{{format_date blog.date_created}}</span></p>
   </div>
   <div id="content">
-    <p>*Text about whatever you want to put in here*</p>
+    <p>{{content}}</p>
   </div>
 </div>
 
-{{!-- comments (appear under post when user presses it) --}}
+{{#if blog.comment.length}}
 <div class="section">
   <div class="heading">
     <h2>comment</h2>
   </div>
   <div id="content">
-    <textarea id="comment"></textarea>
-    <button>Submit</button>
+    <p>{{blog.comment}}</p>
   </div>
 </div>
+{{/if}}
+
+{{/each}}
