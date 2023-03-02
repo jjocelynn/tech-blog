@@ -18,7 +18,9 @@ router.post("/", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   try {
-    const userData = await User.findOne({ where: { username: req.body.username } });
+    const userData = await User.findOne({
+      where: { username: req.body.username },
+    });
 
     if (!userData) {
       res
@@ -42,6 +44,32 @@ router.post("/login", async (req, res) => {
 
       res.json({ user: userData, message: "You are now logged in!" });
     });
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+
+
+router.post("/signup", async (req, res) => {
+  try {
+    const { username, password } = req.body;
+
+    const userExists = User.find((user) => user.username === username);
+
+    if (userExists) {
+      res.status(400).send("This username is taken");
+      return;
+    } else {
+      const newUser = await User.create({ username, password });
+
+      req.session.save(() => {
+        req.session.user_id = newUser.username;
+        req.session.logged_in = true;
+
+        res.status(200).json("User created");
+      });
+    }
   } catch (err) {
     res.status(400).json(err);
   }

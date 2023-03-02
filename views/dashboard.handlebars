@@ -1,11 +1,12 @@
-{{#each }}
-<button class="blogHistory">
-  <span class="title">Title</span>
-  <span class="date">Date</span>
-</button>
-{{!--  --}}
-
+{{#each user.blogs as |blog|}}
+  <button class="blogHistory" id="{{blog.id}}">
+    <span class="title">{{blog.title}}</span>
+    <span class="date">{{format_date blog.date_created}}</span>
+  </button>
+{{/each}}
 
 <div>
   <button id="newPost">+ New Post</button>
 </div>
+
+<script src="./js/dashboard.js"></script>

@@ -4,29 +4,35 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tech Blog</title>
-    <link rel="stylesheet" href="./css/jass.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="./css/style.css" />
   </head>
 
   <body>
-    <div class="flex-column justify-space-around">
-      <header class="display-flex justify-space-between align-center p-2">
+    <div>
+      <header >
         <nav>
-          <a href="/profile">Home</a>
+          <a href="/">Home</a>
           <a href="/dashboard">Dashboard</a>
           {{#if logged_in}}
-            <a href="/login">logout</a>
+            <a href="/login" id="logout">Logout</a>
           {{else}}
-            <a href="/login">login</a>
+            <a href="/login">Login</a>
           {{/if}}
         </nav>
         <h1>
           <a href="/">The Tech Blog</a>
         </h1>
       </header>
-      <main id="main" class="container container-fluid mt-5">
+      <main id="main">
         {{{body}}}
       </main>
     </div>
+    <!-- Render script for logged in users only -->
+    {{#if logged_in}}
+      <script src="/js/logout.js"></script>
+    {{/if}}
   </body>
 </html>
