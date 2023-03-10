@@ -2,6 +2,10 @@ const router = require("express").Router();
 const { Blog, User } = require("../../models");
 const withAuth = require("../../utils/auth");
 
+router.get("/updatePost", (req, res) => {
+res.render("updatePost")
+});
+
 router.get("/:id", async (req, res) => {
   const blog = await Blog.findByPk(req.params.id);
   const blogEdit = blog.get({ plain: true });
@@ -11,26 +15,9 @@ router.get("/:id", async (req, res) => {
     blogEdit,
     logged_in: req.session.logged_in,
   });
-
-  // res.render("dashboard", {
-  //   user,
-  //   logged_in: true,
-  // });
-
-  //   try {
-  //     const blog = await Blog.findByPk(req.params.id);
-
-  //     const blogEdit = blog.get({ plain: true });
-  //     console.log(blogEdit);
-
-  //     , {
-  //       blogEdit,
-  //       logged_in: req.session.logged_in,
-  //     });
-  //   } catch (err) {
-  //     res.status(500).json(err);
-  //   }
 });
+
+
 
 // router.post("/", withAuth, async (req, res) => {
 //   try {

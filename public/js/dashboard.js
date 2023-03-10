@@ -46,7 +46,7 @@ const editButtonHandler = async (blogId) => {
     method: "GET",
   });
   if (response.ok) {
-    document.location.replace("/updatePost");
+    document.location.replace(`/api/dashboard/updatePost`);
   } else {
     alert("Failed retrieve blog");
   }

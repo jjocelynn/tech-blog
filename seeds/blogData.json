@@ -3,7 +3,7 @@
     "title": "Blog1",
     "content": "content that goes inside blog 1",
     "user_id": "1",
-    "comment": "optional but blog 1 has it"
+    "comment": ["optional but blog 1 has it", "second comment"]
   },
   {
     "title": "Blog2",
@@ -19,6 +19,6 @@
     "title": "Blog4",
     "content": "content that goes inside blog 4",
     "user_id": "2",
-    "comment": "optional but blog 1 has it"
+    "comment": ["optional but blog 1 has it"]
   }
 ]

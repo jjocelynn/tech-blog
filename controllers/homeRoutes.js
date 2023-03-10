@@ -14,17 +14,18 @@ router.get("/", async (req, res) => {
 
   // Serialize data so the template can read it
   const blogs = blog.map((project) => project.get({ plain: true }));
+  let loggedIn= req.session.logged_in;
 
   // Pass serialized data and session flag into template
   res.render("homepage", {
     blogs,
-    logged_in: req.session.logged_in,
+    logged_in: loggedIn,
   });
 });
 
-// router.get("/project/:id", async (req, res) => {
+// router.get("/:id", async (req, res) => {
 //   try {
-//     const projectData = await Project.findByPk(req.params.id, {
+//     const blog = await Blog.findByPk(req.params.id, {
 //       include: [
 //         {
 //           model: User,
@@ -64,18 +65,44 @@ router.get("/dashboard", withAuth, async (req, res) => {
   }
 });
 
+router.post("/comment", withAuth, async (req, res) => {
+  console.log("did we get here" + req.session.logged_in)
+  if (!req.session.logged_in) {
+    res.redirect("/login");
+    return;
+  }
+  try {
+    const { id, comment } = req.body;
+    const blog = await Blog.findByPk(id);
+    let comments = blog.comment;
+
+    if (!comments) {
+      comments = [];
+    }
+    comments.push(comment);
+
+    const [newComments] = await Blog.update(
+      { comment: comments },
+      { where: { id: id } }
+    );
+
+    res.redirect("/");
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
 router.get("/login", (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
     res.redirect("/dashboard");
     return;
   }
-
   res.render("login");
 });
 
-router.get("/signup", (req,res)=>{
+router.get("/signup", (req, res) => {
   res.render("signup");
-})
+});
 
 module.exports = router;

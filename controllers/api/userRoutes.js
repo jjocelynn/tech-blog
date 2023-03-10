@@ -49,26 +49,30 @@ router.post("/login", async (req, res) => {
   }
 });
 
-
-
 router.post("/signup", async (req, res) => {
   try {
     const { username, password } = req.body;
 
-    const userExists = User.find((user) => user.username === username);
+    const userExists = await User.find((user) => user.username === username);
 
     if (userExists) {
+      alert("This username is taken")
       res.status(400).send("This username is taken");
-      return;
+      return userExists;
     } else {
-      const newUser = await User.create({ username, password });
+      console.log(username + password)
+      if (password) {
+        const newUser = await User.create({ username, password });
 
-      req.session.save(() => {
-        req.session.user_id = newUser.username;
-        req.session.logged_in = true;
+        req.session.save(() => {
+          req.session.user_id = newUser.username;
+          req.session.logged_in = true;
 
-        res.status(200).json("User created");
-      });
+          res.status(200).json("User created");
+        });
+      } else {
+        alert("password needs to be at least 8 characters");
+      }
     }
   } catch (err) {
     res.status(400).json(err);
@@ -77,8 +81,9 @@ router.post("/signup", async (req, res) => {
 
 router.post("/logout", (req, res) => {
   if (req.session.logged_in) {
+    req.session.logged_in = false;
     req.session.destroy(() => {
-      res.status(204).end();
+      res.status(204).redirect("/login");
     });
   } else {
     res.status(404).end();

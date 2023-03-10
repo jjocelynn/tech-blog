@@ -1,23 +1,30 @@
 {{#each blogs as |blog|}}
-<div class="section">
-  <div class="heading">
-    <h2>{{blog.title}}</h2>
-    <p>Posted by <span>{{blog.user.username}}</span> on <span>{{format_date blog.date_created}}</span></p>
+  <div class="section mt-3 mb-1 blogPost" id="{{blog.id}}">
+    <div class="heading">
+      <h2>{{blog.title}}</h2>
+      <p>Posted by
+        <span>{{blog.user.username}}</span>
+        on
+        <span>{{format_date blog.date_created}}</span></p>
+    </div>
+    <div id="content">
+      <p>{{content}}</p>
+    </div>
   </div>
-  <div id="content">
-    <p>{{content}}</p>
-  </div>
-</div>
 
-{{#if blog.comment.length}}
-<div class="section">
-  <div class="heading">
-    <h2>comment</h2>
-  </div>
-  <div id="content">
-    <p>{{blog.comment}}</p>
-  </div>
-</div>
-{{/if}}
+  {{#if blog.comment.length}}
+  {{#each blog.comment as |comment|}}
+    <div class="section mb-1">
+      <div id="content" class="my-1 mx-3">
+        <p>{{comment}}</p>
+      </div>
+    </div>
+    {{/each}}
+  {{/if}}
+
+  <section class="section newComment{{blog.id}}">
+  </section>
 
 {{/each}}
+
+<script src="./js/homepage.js"></script>

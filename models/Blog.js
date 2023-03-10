@@ -32,9 +32,9 @@ Blog.init(
       defaultValue: DataTypes.NOW,
     },
     comment: {
-        type: DataTypes.TEXT,
-        allowNull: true,
-    }
+      type: DataTypes.JSON,
+      allowNull: true,
+    },
   },
   {
     sequelize,
